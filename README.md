@@ -14,7 +14,7 @@ Please fork and clone this repository, and work from the base project in the rep
 
 ### Part 1 - Firebase Setup
 
-Though you have a base project, you will need to modify it. To begin, run `pod install` after navigating to the repo in terminal. Work out of the generated `.xcworkspace`
+Though you have a base project, you will need to modify it. To begin, run `pod install` after navigating to the repo in terminal. (If you have issues with [Cocoapods, Homebrew, Ruby, follow this guide](Cocopods-Homebrew-and-Ruby-Install-Guide.md)) Work out of the generated `.xcworkspace`
 
 [Watch the iOS Firebase Authentication Video](https://youtu.be/vGeuZtHmcMM) to follow these steps
 
