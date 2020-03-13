@@ -14,10 +14,20 @@ Please fork and clone this repository, and work from the base project in the rep
 
 ### Part 1 - Firebase Setup
 
-Though you have a base project, you will need to modify it. To begin, run `pod install` after navigating to the repo in terminal. (If you have issues with [Cocoapods, Homebrew, Ruby, follow this guide](Cocopods-Homebrew-and-Ruby-Install-Guide.md)) Work out of the generated `.xcworkspace`
+Though you have a base project, you will need to modify it. 
 
-[![Watch the iOS Firebase Authentication Video](https://tk-assets.lambdaschool.com/a8f55011-48ef-4eb9-af2b-17a7b92fae64_FirebaseVideo.png)](https://youtu.be/vGeuZtHmcMM)
+**Cocoapods**
+
+To begin, run `pod install` after navigating to the repo in terminal. (If you have issues with [Cocoapods, Homebrew, Ruby, follow this guide](Cocopods-Homebrew-and-Ruby-Install-Guide.md)) Work out of the generated `.xcworkspace`
+
+    pod install
+    
+NOTE: If you run `pod update` there may be breaking changes from newer versions of Firebase. The current Podfile.lock versions work with Swift 5.1 and Xcode 11.
+
+**Firebase Setup**
+
 [Watch the iOS Firebase Authentication Video](https://youtu.be/vGeuZtHmcMM) to follow these steps
+[![Watch the iOS Firebase Authentication Video](https://tk-assets.lambdaschool.com/a8f55011-48ef-4eb9-af2b-17a7b92fae64_FirebaseVideo.png)](https://youtu.be/vGeuZtHmcMM)
 
 1. Create a new Firebase project (or use an existing one).
 2. Change the project's bundle identifier to your own bundle identifier (e.g. `com.JohnSmith.LambdaTimeline`)
