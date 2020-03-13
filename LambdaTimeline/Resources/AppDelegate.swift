@@ -12,20 +12,9 @@ import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
-              withError error: Error!) {
-      if let error = error {
-        if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
-          print("The user has not signed in before or they have since signed out.")
-        } else {
-          print("\(error.localizedDescription)")
-        }
-        return
-      }
-    }
-
+    
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
@@ -42,10 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return true
     }
     
-//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-//        return GIDSignIn.sharedInstance().handle(url,
-//                                                 sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-//                                                 annotation: [:])
-//    }
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+        if let error = error {
+            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+                print("Error: The user has not signed in before or they have since signed out.")
+            } else {
+                print("\(error.localizedDescription)")
+            }
+            return
+        }
+    }
 }
 

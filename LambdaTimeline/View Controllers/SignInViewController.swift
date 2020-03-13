@@ -12,11 +12,12 @@ import GoogleSignIn
 
 class SignInViewController: UIViewController {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.delegate = self
+        
+        setUpSignInButton()
     }
     
     @IBAction func googleSignIn(_ sender: Any) {
@@ -28,7 +29,7 @@ extension SignInViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
         if let error = error {
-            NSLog("Error signing in with Google: \(error)")
+            print("Error signing in with Google: \(error)")
             return
         }
         
@@ -38,13 +39,14 @@ extension SignInViewController: GIDSignInDelegate {
         
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error {
-                NSLog("Error signing in with Google: \(error)")
+                print("Error signing in with Google: \(error)")
                 return
             }
             
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let postsNavigationController = storyboard.instantiateViewController(withIdentifier: "PostsNavigationController")
+                postsNavigationController.modalPresentationStyle = .fullScreen
                 self.present(postsNavigationController, animated: true, completion: nil)
             }
         }
@@ -52,5 +54,23 @@ extension SignInViewController: GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("User disconnected")
+    }
+    
+    func setUpSignInButton() {
+        
+        let button = GIDSignInButton()
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(button)
+        
+        
+        let buttonCenterXConstraint = button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        let buttonCenterYConstraint = button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        let buttonWidthConstraint = button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
+        
+        view.addConstraints([buttonCenterXConstraint,
+                             buttonCenterYConstraint,
+                             buttonWidthConstraint])
     }
 }

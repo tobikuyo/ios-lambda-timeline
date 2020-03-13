@@ -12,7 +12,7 @@
         <scene sceneID="JFE-md-uAO">
             <objects>
                 <collectionViewController id="hPa-Td-5A3" customClass="PostsCollectionViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="RVQ-9Q-e54">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="RVQ-9Q-e54">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -88,6 +88,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="KIg-ug-6aP">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="iRy-ti-bfU">
+                            <connections>
+                                <action selector="signout:" destination="hPa-Td-5A3" id="Kmt-q7-uhM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cyx-zg-Fv9">
                             <connections>
                                 <action selector="addPost:" destination="hPa-Td-5A3" id="7DV-9r-fSz"/>
@@ -286,17 +291,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ib6-Ce-1cL">
-                                <rect key="frame" x="137" y="427" width="140" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Google Sign In">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="googleSignIn:" destination="xB5-Kl-GM2" eventType="touchUpInside" id="aKH-ih-iCv"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
