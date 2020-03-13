@@ -16,12 +16,16 @@ Please fork and clone this repository, and work from the base project in the rep
 
 Though you have a base project, you will need to modify it. To begin, run `pod install` after navigating to the repo in terminal. (If you have issues with [Cocoapods, Homebrew, Ruby, follow this guide](Cocopods-Homebrew-and-Ruby-Install-Guide.md)) Work out of the generated `.xcworkspace`
 
+[![Watch the iOS Firebase Authentication Video](https://tk-assets.lambdaschool.com/a8f55011-48ef-4eb9-af2b-17a7b92fae64_FirebaseVideo.png)](https://youtu.be/vGeuZtHmcMM)
 [Watch the iOS Firebase Authentication Video](https://youtu.be/vGeuZtHmcMM) to follow these steps
 
 1. Create a new Firebase project (or use an existing one).
 2. Change the project's bundle identifier to your own bundle identifier (e.g. `com.JohnSmith.LambdaTimeline`)
 3. In the "Project Overview" in your Firebase project, you will need to add your app as we are using the Firebase SDK in our Xcode project. You will need to add the "GoogleService-Info.plist" file that will be given to you when you add the app.
-4. Please refer to this page: https://firebase.google.com/docs/auth/ios/firebaseui and follow the steps under the “Set up sign-in methods”. You will only need to do the two steps under the Google section. The starter project will have that URL type already. You just need to put the right URL scheme in. You can find the URL Type in your project file in the “Info” tab at the top.
+4. Please refer to this page: https://firebase.google.com/docs/auth/ios/firebaseui and follow the steps under the “Set up sign-in methods”. 
+    1. You will only need to do the two steps under the [Google section](https://firebase.google.com/docs/auth/ios/firebaseui#google). 
+    2. The starter project will have a URL type already. You just need to paste the right URL scheme in. 
+    3. You can find the URL Type in your project file in the `Project Settings > Info > URL Types (expand) > URL Schemes`
 5. In the Firebase project's database, change the rules to:
 ``` JSON
 {
