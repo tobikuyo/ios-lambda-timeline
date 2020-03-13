@@ -22,7 +22,9 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>Copy-paste-your-REVERSED_CLIENT_ID-from-GoogleService-Info.plist</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
