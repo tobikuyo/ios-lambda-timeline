@@ -26,6 +26,9 @@
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zX2-pu-tuS">
                                 <rect key="frame" x="18" y="641" width="378" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="o9V-cP-EHo" eventType="valueChanged" id="h5Q-Vf-nEM"/>
+                                </connections>
                             </slider>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="rwA-Io-Lnt">
                                 <rect key="frame" x="20" y="715" width="374" height="75"/>
@@ -36,6 +39,9 @@
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                         <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="CHANGE FILTER"/>
+                                        <connections>
+                                            <action selector="changeFilterTapped:" destination="o9V-cP-EHo" eventType="touchUpInside" id="ypW-Oy-tf7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fij-F3-keV">
                                         <rect key="frame" x="204" y="0.0" width="170" height="75"/>
@@ -43,6 +49,9 @@
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                         <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="SAVE PHOTO"/>
+                                        <connections>
+                                            <action selector="savePhotoTapped:" destination="o9V-cP-EHo" eventType="touchUpInside" id="Zyd-vK-AGq"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -53,6 +62,9 @@
                                 <rect key="frame" x="124.5" y="827" width="165" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="TRY ANOTHER PHOTO"/>
+                                <connections>
+                                    <action selector="chooseAnotherPhotoTapped:" destination="o9V-cP-EHo" eventType="touchUpInside" id="FAu-om-jXE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -75,6 +87,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UWT-mp-vsM"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="qFo-6X-oSJ" id="L0u-2j-J5h"/>
+                        <outlet property="slider" destination="zX2-pu-tuS" id="kUH-wr-ll3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BeD-Tz-9Hg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
