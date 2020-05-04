@@ -1,24 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o9V-cP-EHo">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Image Post View Controller-->
+        <scene sceneID="Qgp-Ii-Y4A">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="o9V-cP-EHo" customClass="ImagePostViewController" customModule="ImageFilterEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wOs-g2-Z6Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qFo-6X-oSJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="549.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONTROL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHT-cE-zwu">
+                                <rect key="frame" x="164.5" y="597.5" width="85" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zX2-pu-tuS">
+                                <rect key="frame" x="18" y="641" width="378" height="31"/>
+                            </slider>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="rwA-Io-Lnt">
+                                <rect key="frame" x="20" y="715" width="374" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jf3-CA-mPU">
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="75"/>
+                                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                        <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="CHANGE FILTER"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fij-F3-keV">
+                                        <rect key="frame" x="204" y="0.0" width="170" height="75"/>
+                                        <color key="backgroundColor" red="1" green="0.52156862745098043" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                        <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="SAVE PHOTO"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="Oss-ID-FTu"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="164-Gs-Hh2">
+                                <rect key="frame" x="124.5" y="827" width="165" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="TRY ANOTHER PHOTO"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zHT-cE-zwu" firstAttribute="centerX" secondItem="wOs-g2-Z6Q" secondAttribute="centerX" id="7dh-9h-GBm"/>
+                            <constraint firstItem="rwA-Io-Lnt" firstAttribute="top" secondItem="zX2-pu-tuS" secondAttribute="bottom" constant="44" id="DaR-Dd-jMZ"/>
+                            <constraint firstItem="UWT-mp-vsM" firstAttribute="trailing" secondItem="zX2-pu-tuS" secondAttribute="trailing" constant="20" id="MPu-l9-3Oi"/>
+                            <constraint firstItem="qFo-6X-oSJ" firstAttribute="trailing" secondItem="UWT-mp-vsM" secondAttribute="trailing" id="Phs-6r-Ve9"/>
+                            <constraint firstItem="UWT-mp-vsM" firstAttribute="trailing" secondItem="rwA-Io-Lnt" secondAttribute="trailing" constant="20" id="Q88-q2-7ya"/>
+                            <constraint firstItem="zX2-pu-tuS" firstAttribute="leading" secondItem="UWT-mp-vsM" secondAttribute="leading" constant="20" id="RBy-Py-iNb"/>
+                            <constraint firstItem="164-Gs-Hh2" firstAttribute="centerX" secondItem="wOs-g2-Z6Q" secondAttribute="centerX" id="UdQ-ed-2xP"/>
+                            <constraint firstItem="UWT-mp-vsM" firstAttribute="trailing" secondItem="zHT-cE-zwu" secondAttribute="trailing" constant="164.5" id="VsO-x0-UQT"/>
+                            <constraint firstItem="zX2-pu-tuS" firstAttribute="top" secondItem="zHT-cE-zwu" secondAttribute="bottom" constant="23" id="VtA-Ce-eC7"/>
+                            <constraint firstItem="qFo-6X-oSJ" firstAttribute="leading" secondItem="UWT-mp-vsM" secondAttribute="leading" id="aUc-Zn-nV0"/>
+                            <constraint firstItem="zHT-cE-zwu" firstAttribute="top" secondItem="qFo-6X-oSJ" secondAttribute="bottom" constant="48" id="eqo-Jy-buZ"/>
+                            <constraint firstItem="qFo-6X-oSJ" firstAttribute="top" secondItem="wOs-g2-Z6Q" secondAttribute="top" id="fWf-FP-mPq"/>
+                            <constraint firstItem="UWT-mp-vsM" firstAttribute="bottom" secondItem="164-Gs-Hh2" secondAttribute="bottom" constant="5" id="fpU-cN-4xt"/>
+                            <constraint firstItem="rwA-Io-Lnt" firstAttribute="leading" secondItem="UWT-mp-vsM" secondAttribute="leading" constant="20" id="hVr-fI-olh"/>
+                            <constraint firstItem="164-Gs-Hh2" firstAttribute="top" secondItem="rwA-Io-Lnt" secondAttribute="bottom" constant="37" id="p94-PW-WAK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UWT-mp-vsM"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BeD-Tz-9Hg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="340.57971014492756" y="-231.02678571428569"/>
         </scene>
     </scenes>
 </document>
