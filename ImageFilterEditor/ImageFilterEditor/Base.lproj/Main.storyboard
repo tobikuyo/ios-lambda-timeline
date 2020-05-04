@@ -15,8 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qFo-6X-oSJ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="qFo-6X-oSJ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="549.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="549.5" id="gdT-zE-r2T"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONTROL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHT-cE-zwu">
                                 <rect key="frame" x="164.5" y="597.5" width="85" height="20.5"/>
@@ -88,7 +91,9 @@
                         <viewLayoutGuide key="safeArea" id="UWT-mp-vsM"/>
                     </view>
                     <connections>
+                        <outlet property="changeFilterButton" destination="Jf3-CA-mPU" id="Vzn-X9-8O5"/>
                         <outlet property="imageView" destination="qFo-6X-oSJ" id="L0u-2j-J5h"/>
+                        <outlet property="savePhotoButton" destination="Fij-F3-keV" id="EBf-bY-5uP"/>
                         <outlet property="slider" destination="zX2-pu-tuS" id="kUH-wr-ll3"/>
                     </connections>
                 </viewController>
@@ -97,4 +102,7 @@
             <point key="canvasLocation" x="340.57971014492756" y="-231.02678571428569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Placeholder" width="3673" height="5207"/>
+    </resources>
 </document>
