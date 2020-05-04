@@ -4,15 +4,30 @@
 
 The goal of this project is to take an existing project called LambdaTimeline and add features to it throughout this sprint. 
 
-To begin with, you will take the base project which has basic functionality to create posts with images from the user's photo library, and also add comments to posts.
-
-For today, you will implement the ability to add filters to images you post.
+1. To begin with you will design the photo filter UI in a new Xcode project using different filters.
+2. After you finish implementing your UI for filters, you'll update the Lambda Timeline project with the ability to:
+    1. Create posts with images from the user's photo library
+    2. Add comments to posts
+    3. Filter images you post using your photo filter UI
 
 ## Instructions
 
 Please fork and clone this repository, and work from the base project in the repo.
 
-### Part 1 - Firebase Setup
+### Part 1 - ~~#NoFilter~~ #Filters
+
+Create a new Xcode project to use as a playground for your Core Image filters and UI setup. *It is ok to create extra Xcode projects to make sure things are working (and it's faster to build and test).*
+
+1. Add at least 5 filters. The [Core Image Filter Reference](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/#//apple_ref/doc/filter/ci/CIFalseColor) lists the filters that you can use. Note that some simply take in an `inputImage` parameter, while others have more parameters such as the `CIMotionBlur`, `CIColorControls`, etc. 
+    1. Use at least two or three of filters with a bit more complexity than just the `inputImage`.
+2. Create an `ImagePostViewController` that will get a starting image and filter it.
+    1. Add whatever UI elements you want to control the filters with the selected image.
+    2. For filters that require other parameters use a slider, UITextField, segmented control, or UIPanGestureRecognizer. 
+3. Ensure that the controls to add your filters, adjust them, etc. are only available to the user at the apropriate time. 
+    1. For example, you shouldn't let the user add a filter if they haven't selected an image yet. And it doesn't make sense to show the adjustment UI if they selected a filter that has no adjustment.
+4. You can use a Collection or Table View to select filters with additional detail screens to fine tune amounts of filters (i.e.: Instagram or Apple Photo)
+
+### Part 2 - Firebase Setup
 
 Though you have a base project, you will need to modify it. 
 
@@ -51,17 +66,17 @@ This will allow only users of the app who are authenticated to access the databa
 
 Firebase Storage is essentially a Google Drive for data in your Firebase. It makes sense to use Storage in this application as we will be storing images, audio, and video data. If you're curious as to how Database and Storage interact, feel free to read Firebase's Storage documentation and look at the code in the base project. Particularly in the `Post`, `Media` and `PostController` objects. (Don't feel like you have to, however)
 
-At this point, run the app on your simulator or physical device in order to make sure that you've set up your Firebase Project correctly. If set up correctly, you should be able to create posts, comment on them, and have them get sent to Firebase. You should also be able to re-run the app and have the posts and comments get fetched correctly. If this does not work, the likely scenario is that you've not set up your Firebase project correctly. If you can't figure out what's wrong, please reach out to your PM or Spencer.
+At this point, run the app on your simulator or physical device in order to make sure that you've set up your Firebase Project correctly. If set up correctly, you should be able to create posts, comment on them, and have them get sent to Firebase. You should also be able to re-run the app and have the posts and comments get fetched correctly. If this does not work, the likely scenario is that you've not set up your Firebase project correctly. If you can't figure out what's wrong, please reach out to your TL.
 
-### Part 2 - ~~#NoFilter~~ #Filters
+*Note: If you have a free Apple Developer account you may need to reuse your Bundle ID from a previous project to run on a real device (Apple limits you to three unique identifiers).*
 
-Now that your project is working correctly, you will implement the ability to add filters to the image(s) the user selects from their photo. 
+### Part 3: Feature Integration
 
-1. You must add at least 5 filters. [This page](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/#//apple_ref/doc/filter/ci/CIFalseColor) lists the filters that you can use. Note that some simply take in an `inputImage` parameter, while others have more parameters such as the `CIMotionBlur`, `CIColorControls`, etc. Use at least two or three of filters with a bit more complexity than just the `inputImage`.
-2. Add whatever UI elements you want to the `ImagePostViewController` in order for them to add filters to their image after they've selected one. For the filters that require other parameters, add UI to allow the user to adjust the filter such as a slider for brightness, blur amount, etc.
-3. Ensure that the controls to add your filters, adjust them, etc. are only available to the user at the apropriate time. For example, you shouldn't let the user add a filter if they haven't selected an image yet. And it doesn't make sense to show the adjustment UI if they selected a filter that has no adjustment.
+1. Integrate your `ImagePostViewController` into the Lambda Timeline Firebase project.
+2. You should be able to create a new post, select a photo, edit the photo, and post it to your Firebase server.
 
 ## Go Further
 
 - Clean up the UI of the app, either with the UI you added to support filters. You're welcome to touch up the UI overall if you wish as well.
-- Allow for undoing and redoing of filter effects.
+- Allow for undoing and redoing of filter effects (i.e.: Reset to the identity values, snap to default, etc.)
+- Try using a `UIPanGestureRecognizer` on your `UIImageView` to get the (x, y) coordinate using `locationInView:` on the panGesture. (You may need to clamp the value to the bounds of the image).
