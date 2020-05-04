@@ -13,6 +13,7 @@
 		2C043AE22460B2190069DBA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C043AE12460B2190069DBA7 /* Assets.xcassets */; };
 		2C043AE52460B2190069DBA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C043AE32460B2190069DBA7 /* LaunchScreen.storyboard */; };
 		2C043AED2460B5910069DBA7 /* ImagePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C043AEC2460B5910069DBA7 /* ImagePostViewController.swift */; };
+		2C043AF42460D1280069DBA7 /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C043AF32460D1280069DBA7 /* UIImage+Scaling.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2C043AE42460B2190069DBA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C043AE62460B2190069DBA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C043AEC2460B5910069DBA7 /* ImagePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePostViewController.swift; sourceTree = "<group>"; };
+		2C043AF32460D1280069DBA7 /* UIImage+Scaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				2C043AEE2460BDA00069DBA7 /* Application */,
 				2C043AEF2460BDAE0069DBA7 /* Storyboards */,
 				2C043AF12460BDD70069DBA7 /* View Controllers */,
+				2C043AF22460D1010069DBA7 /* Helpers */,
 				2C043AF02460BDC70069DBA7 /* Resources */,
 			);
 			path = ImageFilterEditor;
@@ -97,6 +100,14 @@
 				2C043AEC2460B5910069DBA7 /* ImagePostViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		2C043AF22460D1010069DBA7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2C043AF32460D1280069DBA7 /* UIImage+Scaling.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C043AD92460B2180069DBA7 /* AppDelegate.swift in Sources */,
+				2C043AF42460D1280069DBA7 /* UIImage+Scaling.swift in Sources */,
 				2C043AED2460B5910069DBA7 /* ImagePostViewController.swift in Sources */,
 				2C043ADB2460B2180069DBA7 /* SceneDelegate.swift in Sources */,
 			);

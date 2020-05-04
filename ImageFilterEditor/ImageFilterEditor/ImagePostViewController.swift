@@ -11,6 +11,14 @@ import Photos
 import CoreImage
 import CoreImage.CIFilterBuiltins
 
+enum Filter: String {
+    case motionBlur = "CIMotionBlur"
+    case process = "CIPhotoEffectProcess"
+    case tonal = "CIPhotoEffectTonal"
+    case mono = "CIPhotoEffectMono"
+    case transfer = "CIPhotoEffectTransfer"
+}
+
 class ImagePostViewController: UIViewController {
 
     // MARK: - IBOutlets
@@ -23,30 +31,34 @@ class ImagePostViewController: UIViewController {
     // MARK: - Properties
 
     var originalImage: UIImage?
-
-    private var motionBlur = CIFilter(name: "CIMotionBlur")
-    private var sepiaTone = CIFilter(name: "CIPhotoEffectProcess")
-    private var tonal = CIFilter(name: "CIPhotoEffectTonal")
-    private var mono = CIFilter(name: "CIPhotoEffectMono")
-    private var transfer = CIFilter(name: "CIPhotoEffectTransfer")
-
     private var context = CIContext(options: nil)
 
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         changeFilterButton.layer.cornerRadius = 4
         savePhotoButton.layer.cornerRadius = 4
     }
 
     // MARK: - Actions
 
-    func applyFilter(to image: UIImage, with filter: CIFilter) -> UIImage? {
+    func scaleImage(_ image: UIImage) -> UIImage {
+        var scaledSize = imageView.bounds.size
+        let scale = UIScreen.main.scale // 1x (no modern iPhones) 2x 3x
+
+        scaledSize = CGSize(width: scaledSize.width * scale, height: scaledSize.height * scale)
+        let scaledImage = image.imageByScaling(toSize: scaledSize)
+
+        return scaledImage ?? UIImage()
+    }
+
+    func applyFilter(_ filter: Filter, to image: UIImage) -> UIImage? {
         guard let cgImage = image.cgImage else { return nil }
         let ciImage = CIImage(cgImage: cgImage)
 
+        let filter = CIFilter(name: filter.rawValue)!
         filter.setValue(ciImage, forKey: kCIInputImageKey)
         filter.setValue(slider.value, forKey: kCIInputIntensityKey)
 
