@@ -31,6 +31,7 @@ class ImagePostViewController: UIViewController {
     // MARK: - Properties
 
     var originalImage: UIImage?
+    var filter: Filter?
     private var context = CIContext(options: nil)
 
     // MARK: - View Lifecycle
@@ -43,6 +44,16 @@ class ImagePostViewController: UIViewController {
     }
 
     // MARK: - Actions
+
+    func updateImage(using filter: Filter) {
+        if let originalImage = originalImage {
+            let scaledImage = scaleImage(originalImage)
+            imageView.image = applyFilter(filter, to: scaledImage)
+            self.filter = filter
+        } else {
+            imageView.image = nil
+        }
+    }
 
     func scaleImage(_ image: UIImage) -> UIImage {
         var scaledSize = imageView.bounds.size
@@ -72,18 +83,17 @@ class ImagePostViewController: UIViewController {
 
     // MARK: - IBActions
 
+    @IBAction func sliderValueChanged(_ sender: Any) {
+        guard let filter = filter else { return }
+        updateImage(using: filter)
+    }
+
     @IBAction func changeFilterTapped(_ sender: Any) {
     }
 
-    
     @IBAction func savePhotoTapped(_ sender: Any) {
     }
 
-
-    @IBAction func sliderValueChanged(_ sender: Any) {
-    }
-
-    
     @IBAction func chooseAnotherPhotoTapped(_ sender: Any) {
     }
 }
