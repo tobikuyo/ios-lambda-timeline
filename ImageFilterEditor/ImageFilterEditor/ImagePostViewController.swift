@@ -31,6 +31,7 @@ class ImagePostViewController: UIViewController {
     // MARK: - Properties
 
     var originalImage: UIImage?
+
     private var filter: CIFilter!
     private var context: CIContext!
 
@@ -47,6 +48,16 @@ class ImagePostViewController: UIViewController {
     }
 
     // MARK: - Action
+
+    func scaleImage(_ image: UIImage) -> UIImage {
+        var scaledSize = imageView.bounds.size
+        let scale = UIScreen.main.scale
+
+        scaledSize = CGSize(width: scaledSize.width * scale, height: scaledSize.height * scale)
+        guard let scaledImage = image.imageByScaling(toSize: scaledSize) else { return UIImage() }
+
+        return scaledImage
+    }
 
     func applyFilter(action: UIAlertAction) {
         guard let image = originalImage else { return }
@@ -80,13 +91,16 @@ class ImagePostViewController: UIViewController {
         if inputKeys.contains(kCIInputIntensityKey) { filter.setValue(slider.value, forKey: kCIInputIntensityKey) }
         if inputKeys.contains(kCIInputRadiusKey) { filter.setValue(slider.value * 200, forKey: kCIInputRadiusKey) }
         if inputKeys.contains(kCIInputScaleKey) { filter.setValue(slider.value * 10, forKey: kCIInputScaleKey) }
-        if inputKeys.contains(kCIInputCenterKey) { filter.setValue(CIVector(x: originalImage.size.width / 2, y: originalImage.size.height / 2), forKey: kCIInputCenterKey) }
+        if inputKeys.contains(kCIInputCenterKey) { filter.setValue(CIVector(x: originalImage.size.width / 2, y: originalImage.size.height / 2),
+                                                                   forKey: kCIInputCenterKey) }
 
         guard let outputCIImage = filter.outputImage,
             let outputCGImage = context.createCGImage(outputCIImage,
                                                       from: outputCIImage.extent) else { return }
 
-        imageView.image = UIImage(cgImage: outputCGImage)
+        let outputImage = UIImage(cgImage: outputCGImage)
+        let scaledImage = scaleImage(outputImage)
+        imageView.image = scaledImage
     }
 
     // MARK: - IBActions
