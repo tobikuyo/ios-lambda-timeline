@@ -31,8 +31,8 @@ class ImagePostViewController: UIViewController {
     // MARK: - Properties
 
     var originalImage: UIImage?
-    var filter: Filter?
-    private var context = CIContext(options: nil)
+    private var filter: CIFilter!
+    private var context: CIContext!
 
     // MARK: - View Lifecycle
 
@@ -41,54 +41,71 @@ class ImagePostViewController: UIViewController {
 
         changeFilterButton.layer.cornerRadius = 4
         savePhotoButton.layer.cornerRadius = 4
+
+        context = CIContext(options: nil)
+        originalImage = imageView.image
     }
 
-    // MARK: - Actions
+    // MARK: - Action
 
-    func updateImage(using filter: Filter) {
-        if let originalImage = originalImage {
-            let scaledImage = scaleImage(originalImage)
-            imageView.image = applyFilter(filter, to: scaledImage)
-            self.filter = filter
-        } else {
-            imageView.image = nil
+    func applyFilter(action: UIAlertAction) {
+        guard let image = originalImage else { return }
+        let ciImage = CIImage(image: image)
+
+        switch action.title {
+        case "Motion Blur":
+            filter = CIFilter(name: "CIMotionBlur")
+        case "Process":
+            filter = CIFilter(name: "CIPhotoEffectProcess")
+        case "Tonal":
+            filter = CIFilter(name: "CIPhotoEffectTonal")
+        case "Mono":
+            filter = CIFilter(name: "CIPhotoEffectMono")
+        case "Transfer":
+            filter = CIFilter(name: "CIPhotoEffectTransfer")
+        default:
+            break
         }
-    }
 
-    func scaleImage(_ image: UIImage) -> UIImage {
-        var scaledSize = imageView.bounds.size
-        let scale = UIScreen.main.scale // 1x (no modern iPhones) 2x 3x
-
-        scaledSize = CGSize(width: scaledSize.width * scale, height: scaledSize.height * scale)
-        let scaledImage = image.imageByScaling(toSize: scaledSize)
-
-        return scaledImage ?? UIImage()
-    }
-
-    func applyFilter(_ filter: Filter, to image: UIImage) -> UIImage? {
-        guard let cgImage = image.cgImage else { return nil }
-        let ciImage = CIImage(cgImage: cgImage)
-
-        let filter = CIFilter(name: filter.rawValue)!
         filter.setValue(ciImage, forKey: kCIInputImageKey)
-        filter.setValue(slider.value, forKey: kCIInputIntensityKey)
 
-        guard
-            let outputCIImage = filter.outputImage,
+        processImage()
+    }
+
+    func processImage() {
+        let inputKeys = filter.inputKeys
+
+        guard let originalImage = originalImage else { return }
+
+        if inputKeys.contains(kCIInputIntensityKey) { filter.setValue(slider.value, forKey: kCIInputIntensityKey) }
+        if inputKeys.contains(kCIInputRadiusKey) { filter.setValue(slider.value * 200, forKey: kCIInputRadiusKey) }
+        if inputKeys.contains(kCIInputScaleKey) { filter.setValue(slider.value * 10, forKey: kCIInputScaleKey) }
+        if inputKeys.contains(kCIInputCenterKey) { filter.setValue(CIVector(x: originalImage.size.width / 2, y: originalImage.size.height / 2), forKey: kCIInputCenterKey) }
+
+        guard let outputCIImage = filter.outputImage,
             let outputCGImage = context.createCGImage(outputCIImage,
-                                                      from: CGRect(origin: .zero, size: image.size)) else { return nil }
+                                                      from: outputCIImage.extent) else { return }
 
-        return UIImage(cgImage: outputCGImage)
+        imageView.image = UIImage(cgImage: outputCGImage)
     }
 
     // MARK: - IBActions
 
     @IBAction func sliderValueChanged(_ sender: Any) {
-        guard let filter = filter else { return }
-        updateImage(using: filter)
+        processImage()
     }
 
-    @IBAction func changeFilterTapped(_ sender: Any) {
+    @IBAction func changeFilterTapped(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Select a Filter", message: nil, preferredStyle: .actionSheet)
+
+        alert.addAction(UIAlertAction(title: "Motion Blur", style: .default, handler: applyFilter(action:)))
+        alert.addAction(UIAlertAction(title: "Process", style: .default, handler: applyFilter(action:)))
+        alert.addAction(UIAlertAction(title: "Tonal", style: .default, handler: applyFilter(action:)))
+        alert.addAction(UIAlertAction(title: "Mono", style: .default, handler: applyFilter(action:)))
+        alert.addAction(UIAlertAction(title: "Transfer", style: .default, handler: applyFilter(action:)))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        present(alert, animated: true, completion: nil)
     }
 
     @IBAction func savePhotoTapped(_ sender: Any) {

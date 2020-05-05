@@ -18,7 +18,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="qFo-6X-oSJ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="549.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="549.5" id="gdT-zE-r2T"/>
+                                    <constraint firstAttribute="height" constant="549.5" identifier="imageHeight" id="gdT-zE-r2T"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONTROL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHT-cE-zwu">
@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zX2-pu-tuS">
-                                <rect key="frame" x="18" y="641" width="378" height="31"/>
+                                <rect key="frame" x="28" y="641" width="358" height="31"/>
                                 <connections>
                                     <action selector="sliderValueChanged:" destination="o9V-cP-EHo" eventType="valueChanged" id="h5Q-Vf-nEM"/>
                                 </connections>
@@ -58,7 +58,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="Oss-ID-FTu"/>
+                                    <constraint firstAttribute="height" constant="75" identifier="stackHeight" id="Oss-ID-FTu"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="164-Gs-Hh2">
@@ -72,21 +72,21 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="zHT-cE-zwu" firstAttribute="centerX" secondItem="wOs-g2-Z6Q" secondAttribute="centerX" id="7dh-9h-GBm"/>
-                            <constraint firstItem="rwA-Io-Lnt" firstAttribute="top" secondItem="zX2-pu-tuS" secondAttribute="bottom" constant="44" id="DaR-Dd-jMZ"/>
-                            <constraint firstItem="UWT-mp-vsM" firstAttribute="trailing" secondItem="zX2-pu-tuS" secondAttribute="trailing" constant="20" id="MPu-l9-3Oi"/>
-                            <constraint firstItem="qFo-6X-oSJ" firstAttribute="trailing" secondItem="UWT-mp-vsM" secondAttribute="trailing" id="Phs-6r-Ve9"/>
-                            <constraint firstItem="UWT-mp-vsM" firstAttribute="trailing" secondItem="rwA-Io-Lnt" secondAttribute="trailing" constant="20" id="Q88-q2-7ya"/>
-                            <constraint firstItem="zX2-pu-tuS" firstAttribute="leading" secondItem="UWT-mp-vsM" secondAttribute="leading" constant="20" id="RBy-Py-iNb"/>
-                            <constraint firstItem="164-Gs-Hh2" firstAttribute="centerX" secondItem="wOs-g2-Z6Q" secondAttribute="centerX" id="UdQ-ed-2xP"/>
-                            <constraint firstItem="UWT-mp-vsM" firstAttribute="trailing" secondItem="zHT-cE-zwu" secondAttribute="trailing" constant="164.5" id="VsO-x0-UQT"/>
-                            <constraint firstItem="zX2-pu-tuS" firstAttribute="top" secondItem="zHT-cE-zwu" secondAttribute="bottom" constant="23" id="VtA-Ce-eC7"/>
-                            <constraint firstItem="qFo-6X-oSJ" firstAttribute="leading" secondItem="UWT-mp-vsM" secondAttribute="leading" id="aUc-Zn-nV0"/>
-                            <constraint firstItem="zHT-cE-zwu" firstAttribute="top" secondItem="qFo-6X-oSJ" secondAttribute="bottom" constant="48" id="eqo-Jy-buZ"/>
-                            <constraint firstItem="qFo-6X-oSJ" firstAttribute="top" secondItem="wOs-g2-Z6Q" secondAttribute="top" id="fWf-FP-mPq"/>
-                            <constraint firstItem="UWT-mp-vsM" firstAttribute="bottom" secondItem="164-Gs-Hh2" secondAttribute="bottom" constant="5" id="fpU-cN-4xt"/>
-                            <constraint firstItem="rwA-Io-Lnt" firstAttribute="leading" secondItem="UWT-mp-vsM" secondAttribute="leading" constant="20" id="hVr-fI-olh"/>
-                            <constraint firstItem="164-Gs-Hh2" firstAttribute="top" secondItem="rwA-Io-Lnt" secondAttribute="bottom" constant="37" id="p94-PW-WAK"/>
+                            <constraint firstItem="zHT-cE-zwu" firstAttribute="centerX" secondItem="wOs-g2-Z6Q" secondAttribute="centerX" identifier="labelX" id="7dh-9h-GBm"/>
+                            <constraint firstItem="rwA-Io-Lnt" firstAttribute="top" secondItem="zX2-pu-tuS" secondAttribute="bottom" constant="44" identifier="sliderBottom" id="DaR-Dd-jMZ"/>
+                            <constraint firstItem="UWT-mp-vsM" firstAttribute="trailing" secondItem="zX2-pu-tuS" secondAttribute="trailing" constant="30" identifier="sliderTrailing" id="MPu-l9-3Oi"/>
+                            <constraint firstItem="qFo-6X-oSJ" firstAttribute="trailing" secondItem="UWT-mp-vsM" secondAttribute="trailing" identifier="imageTrailing" id="Phs-6r-Ve9"/>
+                            <constraint firstItem="UWT-mp-vsM" firstAttribute="trailing" secondItem="rwA-Io-Lnt" secondAttribute="trailing" constant="20" identifier="stackTrailing" id="Q88-q2-7ya"/>
+                            <constraint firstItem="zX2-pu-tuS" firstAttribute="leading" secondItem="UWT-mp-vsM" secondAttribute="leading" constant="30" identifier="sliderLeading" id="RBy-Py-iNb"/>
+                            <constraint firstItem="164-Gs-Hh2" firstAttribute="centerX" secondItem="wOs-g2-Z6Q" secondAttribute="centerX" identifier="anotherX" id="UdQ-ed-2xP"/>
+                            <constraint firstItem="UWT-mp-vsM" firstAttribute="trailing" secondItem="zHT-cE-zwu" secondAttribute="trailing" constant="164.5" identifier="labelTrailing" id="VsO-x0-UQT"/>
+                            <constraint firstItem="zX2-pu-tuS" firstAttribute="top" secondItem="zHT-cE-zwu" secondAttribute="bottom" constant="23" identifier="labelBottom" id="VtA-Ce-eC7"/>
+                            <constraint firstItem="qFo-6X-oSJ" firstAttribute="leading" secondItem="UWT-mp-vsM" secondAttribute="leading" identifier="imageLeading" id="aUc-Zn-nV0"/>
+                            <constraint firstItem="zHT-cE-zwu" firstAttribute="top" secondItem="qFo-6X-oSJ" secondAttribute="bottom" constant="48" identifier="imageBottom" id="eqo-Jy-buZ"/>
+                            <constraint firstItem="qFo-6X-oSJ" firstAttribute="top" secondItem="wOs-g2-Z6Q" secondAttribute="top" identifier="imageTop" id="fWf-FP-mPq"/>
+                            <constraint firstItem="UWT-mp-vsM" firstAttribute="bottom" secondItem="164-Gs-Hh2" secondAttribute="bottom" constant="5" identifier="anotherBottom" id="fpU-cN-4xt"/>
+                            <constraint firstItem="rwA-Io-Lnt" firstAttribute="leading" secondItem="UWT-mp-vsM" secondAttribute="leading" constant="20" identifier="stackLeading" id="hVr-fI-olh"/>
+                            <constraint firstItem="164-Gs-Hh2" firstAttribute="top" secondItem="rwA-Io-Lnt" secondAttribute="bottom" constant="37" identifier="stackBottom" id="p94-PW-WAK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UWT-mp-vsM"/>
                     </view>
