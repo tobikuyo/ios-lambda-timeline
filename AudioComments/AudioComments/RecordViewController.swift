@@ -53,7 +53,13 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         timerMonoSpacedFont()
-        updateViews()
+
+        if recording == nil  {
+            updateViews()
+        } else {
+            recordingExistsView()
+        }
+
         try? prepareAudioSession()
 
         recordingLabel.isHidden = true
@@ -76,6 +82,25 @@ class RecordViewController: UIViewController {
         timeSlider.value = Float(currentTime)
 
         recordButton.isSelected = isRecording
+    }
+
+    func recordingExistsView() {
+        guard let recording = recording else { return }
+
+        playButton.isSelected = isPlaying
+
+        let currentTime = recording.currentTime
+        let duration = recording.duration
+        let timeRemaining = round(duration) - currentTime
+
+        timeElapsedLabel.text = timeIntervalFormatter.string(from: currentTime) ?? "00:00"
+        timeRemainingLabel.text = "-" + (timeIntervalFormatter.string(from: timeRemaining) ?? "00:00")
+
+        timeSlider.minimumValue = 0
+        timeSlider.maximumValue = Float(duration)
+        timeSlider.value = Float(currentTime)
+
+        stoppedRecordingView()
     }
 
     private func timerMonoSpacedFont() {
