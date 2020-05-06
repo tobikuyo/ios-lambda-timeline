@@ -22,6 +22,9 @@ class RecordViewController: UIViewController {
 
     // MARK: - Properties
 
+    var recording: Recording?
+    var recordingController: RecordingController?
+
     var recordingTitle: String?
     var recordingURL: URL?
     var timer: Timer?
@@ -222,6 +225,32 @@ class RecordViewController: UIViewController {
     }
 
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let duration = audioPlayer?.duration,
+            let currentTime = audioPlayer?.currentTime,
+            let recordingURL = recordingURL else { return }
+
+        let alert = UIAlertController(title: "What do you want to name this recording?", message: nil, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: nil)
+
+        var recordingTitle = ""
+
+        let submit = UIAlertAction(title: "Submit", style: .default) { _ in
+            if let response = alert.textFields?.first?.text, !response.isEmpty {
+                recordingTitle = response
+                self.recordingController?.createRecording(called: recordingTitle,
+                                                          duration: duration,
+                                                          currentTime: currentTime,
+                                                          url: recordingURL)
+
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alert.addAction(submit)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
 }
 
