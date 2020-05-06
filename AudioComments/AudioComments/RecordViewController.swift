@@ -49,7 +49,11 @@ class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        timerMonoSpacedFont()
+        updateViews()
         try? prepareAudioSession()
+
+        recordingLabel.isHidden = true
     }
 
     // MARK: - View Related Methods
@@ -69,6 +73,25 @@ class RecordViewController: UIViewController {
         timeSlider.value = Float(currentTime)
 
         recordButton.isSelected = isRecording
+    }
+
+    private func timerMonoSpacedFont() {
+        timeElapsedLabel.font = UIFont.monospacedDigitSystemFont(ofSize: timeElapsedLabel.font.pointSize, weight: .regular)
+        timeRemainingLabel.font = UIFont.monospacedDigitSystemFont(ofSize: timeRemainingLabel.font.pointSize, weight: .regular)
+    }
+
+    private func isRecordingView() {
+        recordingLabel.isHidden = false
+        timeElapsedLabel.isHidden = true
+        timeRemainingLabel.isHidden = true
+        timeSlider.isHidden = true
+    }
+
+    private func stoppedRecordingView() {
+        recordingLabel.isHidden = true
+        timeElapsedLabel.isHidden = false
+        timeRemainingLabel.isHidden = false
+        timeSlider.isHidden = false
     }
 
     // MARK: - Timer Methods
@@ -172,6 +195,12 @@ class RecordViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction func updateCurrentTime(_ sender: Any) {
+        if isPlaying {
+            pause()
+        }
+
+        audioPlayer?.currentTime = TimeInterval(timeSlider.value)
+        updateViews()
     }
 
     @IBAction func togglePlayback(_ sender: Any) {
@@ -185,8 +214,10 @@ class RecordViewController: UIViewController {
     @IBAction func toggleRecording(_ sender: Any) {
         if isRecording {
             stopRecording()
+            stoppedRecordingView()
         } else {
             requestPermissionOrStartRecording()
+            isRecordingView()
         }
     }
 
@@ -211,6 +242,20 @@ extension RecordViewController: AVAudioRecorderDelegate {
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
         if let error = error {
             print("Audio Record Error: \(error)")
+        }
+
+        updateViews()
+    }
+}
+
+extension RecordViewController: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        updateViews()
+    }
+
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+        if let error = error {
+            print("Audio Player Error: \(error)")
         }
 
         updateViews()
