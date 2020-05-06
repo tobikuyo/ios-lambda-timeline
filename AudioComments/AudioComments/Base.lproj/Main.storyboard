@@ -119,7 +119,7 @@
         <scene sceneID="ZEV-TX-dRv">
             <objects>
                 <viewController id="B0x-LW-46t" customClass="RecordViewController" customModule="AudioComments" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8WY-Pg-sCD">
+                    <view key="view" contentMode="scaleToFill" id="8WY-Pg-sCD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -155,13 +155,13 @@
                                 <viewLayoutGuide key="safeArea" id="UTj-f6-kPq"/>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQU-kw-pfj">
-                                <rect key="frame" x="20" y="474" width="374" height="36"/>
+                                <rect key="frame" x="20" y="430" width="374" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="hjL-mU-K7x">
-                                <rect key="frame" x="20" y="668" width="374" height="86"/>
+                                <rect key="frame" x="20" y="624" width="374" height="86"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IkY-wr-SUR">
                                         <rect key="frame" x="0.0" y="0.0" width="173" height="86"/>
@@ -187,7 +187,6 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="LQU-kw-pfj" firstAttribute="top" secondItem="qAy-li-AYw" secondAttribute="top" constant="386" id="CCn-3Z-YXX"/>
                             <constraint firstItem="LQU-kw-pfj" firstAttribute="leading" secondItem="qAy-li-AYw" secondAttribute="leading" constant="20" id="Dtf-qJ-ygg"/>
                             <constraint firstItem="Qb4-L9-xMh" firstAttribute="top" secondItem="LQU-kw-pfj" secondAttribute="bottom" constant="62" id="Lrs-ok-1Bv"/>
                             <constraint firstItem="qAy-li-AYw" firstAttribute="bottom" secondItem="hjL-mU-K7x" secondAttribute="bottom" constant="152" id="S7U-BV-iAX"/>

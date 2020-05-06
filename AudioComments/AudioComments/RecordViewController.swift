@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class RecordViewController: UIViewController {
 
@@ -19,12 +20,68 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
 
+    // MARK: - Properties
+
+    var recordingURL: URL?
+    var timer: Timer?
+
+    var audioRecorder: AVAudioRecorder?
+    var audioPlayer: AVAudioPlayer?
+
+    var isRecording: Bool {
+        audioRecorder?.isRecording ?? false
+    }
+
+    var isPlaying: Bool {
+        audioPlayer?.isPlaying ?? false
+    }
+
+    lazy var timeIntervalFormatter: DateComponentsFormatter = {
+        let formatting = DateComponentsFormatter()
+        formatting.unitsStyle = .positional // 00:00  mm:ss
+        formatting.zeroFormattingBehavior = .pad
+        formatting.allowedUnits = [.minute, .second]
+        return formatting
+    }()
+
     // MARK: - View Lifecyle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
-        // Do any additional setup after loading the view.
+    // MARK: - Actions
+
+    private func updateViews() {
+        playButton.isSelected = isPlaying
+
+        let currentTime = audioPlayer?.currentTime ?? 0.0
+        let duration = audioPlayer?.duration ?? 0.0
+        let timeRemaining = round(duration) - currentTime
+
+        timeElapsedLabel.text = timeIntervalFormatter.string(from: currentTime) ?? "00:00"
+        timeRemainingLabel.text = "-" + (timeIntervalFormatter.string(from: timeRemaining) ?? "00:00")
+
+        timeSlider.minimumValue = 0
+        timeSlider.maximumValue = Float(duration)
+        timeSlider.value = Float(currentTime)
+
+        recordButton.isSelected = isRecording
+    }
+
+    // MARK: Timer Methods
+
+    func startTimer() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.030, repeats: true) { [weak self] (_) in
+            guard let self = self else { return }
+            self.updateViews()
+        }
+    }
+
+    func cancelTimer() {
+        timer?.invalidate()
+        timer = nil
     }
 
     // MARK: - IBActions
