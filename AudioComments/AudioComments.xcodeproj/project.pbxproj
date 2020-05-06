@@ -15,6 +15,8 @@
 		2C51B2212462DFA3005ECA6C /* RecordingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51B2202462DFA3005ECA6C /* RecordingsTableViewController.swift */; };
 		2C51B2232462DFBA005ECA6C /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51B2222462DFBA005ECA6C /* RecordViewController.swift */; };
 		2C51B2262462E391005ECA6C /* RecordingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51B2252462E391005ECA6C /* RecordingTableViewCell.swift */; };
+		2C51B22A2463098F005ECA6C /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51B2292463098F005ECA6C /* Recording.swift */; };
+		2C51B22D24630FE6005ECA6C /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51B22C24630FE6005ECA6C /* RecordingController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		2C51B2202462DFA3005ECA6C /* RecordingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsTableViewController.swift; sourceTree = "<group>"; };
 		2C51B2222462DFBA005ECA6C /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		2C51B2252462E391005ECA6C /* RecordingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingTableViewCell.swift; sourceTree = "<group>"; };
+		2C51B2292463098F005ECA6C /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		2C51B22C24630FE6005ECA6C /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +66,9 @@
 			children = (
 				2C043B18246213AB0069DBA7 /* Application */,
 				2C043B19246213BC0069DBA7 /* Storyboards */,
+				2C51B2282463097C005ECA6C /* Model */,
 				2C51B2242462DFC9005ECA6C /* Views */,
+				2C51B22B24630FCF005ECA6C /* Model Controller */,
 				2C043B1B246213EA0069DBA7 /* View Controllers */,
 				2C043B1A246213D50069DBA7 /* Resources */,
 			);
@@ -112,6 +118,22 @@
 			);
 			name = Views;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		2C51B2282463097C005ECA6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2C51B2292463098F005ECA6C /* Recording.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2C51B22B24630FCF005ECA6C /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2C51B22C24630FE6005ECA6C /* RecordingController.swift */,
+			);
+			name = "Model Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,7 +208,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C043B0424620FB00069DBA7 /* AppDelegate.swift in Sources */,
+				2C51B22A2463098F005ECA6C /* Recording.swift in Sources */,
 				2C51B2262462E391005ECA6C /* RecordingTableViewCell.swift in Sources */,
+				2C51B22D24630FE6005ECA6C /* RecordingController.swift in Sources */,
 				2C043B0624620FB00069DBA7 /* SceneDelegate.swift in Sources */,
 				2C51B2212462DFA3005ECA6C /* RecordingsTableViewController.swift in Sources */,
 				2C51B2232462DFBA005ECA6C /* RecordViewController.swift in Sources */,
