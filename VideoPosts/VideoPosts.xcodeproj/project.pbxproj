@@ -15,6 +15,7 @@
 		2C7DD1122463685900E09D8B /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7DD1112463685900E09D8B /* CameraPreviewView.swift */; };
 		2C7DD114246368D300E09D8B /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7DD113246368D300E09D8B /* VideoPlayerView.swift */; };
 		2C7DD11724636B8B00E09D8B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7DD11624636B8B00E09D8B /* CameraViewController.swift */; };
+		2C7DD11B24636EA100E09D8B /* VideoPostsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7DD11A24636EA100E09D8B /* VideoPostsCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		2C7DD1112463685900E09D8B /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		2C7DD113246368D300E09D8B /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		2C7DD11624636B8B00E09D8B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		2C7DD11A24636EA100E09D8B /* VideoPostsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostsCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		2C7DD11524636ADF00E09D8B /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2C7DD11A24636EA100E09D8B /* VideoPostsCollectionViewController.swift */,
 				2C7DD11624636B8B00E09D8B /* CameraViewController.swift */,
 			);
 			name = "View Controller";
@@ -188,6 +191,7 @@
 				2C7DD11724636B8B00E09D8B /* CameraViewController.swift in Sources */,
 				2C7D8C60246364E9009F8656 /* SceneDelegate.swift in Sources */,
 				2C7DD1122463685900E09D8B /* CameraPreviewView.swift in Sources */,
+				2C7DD11B24636EA100E09D8B /* VideoPostsCollectionViewController.swift in Sources */,
 				2C7DD114246368D300E09D8B /* VideoPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
