@@ -22,6 +22,7 @@ class RecordViewController: UIViewController {
 
     // MARK: - Properties
 
+    var recordingTitle: String?
     var recordingURL: URL?
     var timer: Timer?
 
@@ -50,7 +51,7 @@ class RecordViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    // MARK: - Actions
+    // MARK: - View Related Methods
 
     private func updateViews() {
         playButton.isSelected = isPlaying
@@ -84,6 +85,69 @@ class RecordViewController: UIViewController {
         timer = nil
     }
 
+    // MARK: - Recording Methods
+
+    func requestPermissionOrStartRecording() {
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case .undetermined:
+            AVAudioSession.sharedInstance().requestRecordPermission { granted in
+                guard granted == true else { return }
+
+                let alert = UIAlertController(title: "Start Recording", message: nil, preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            }
+        case .denied:
+            let alert = UIAlertController(title: "Microphone Access Denied", message: "Please allow this app to access your Microphone.", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Open Settings", style: .default) { (_) in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            })
+
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+
+            present(alert, animated: true, completion: nil)
+        case .granted:
+            startRecording()
+        @unknown default:
+            break
+        }
+    }
+
+    func createNewRecordingURL() -> URL {
+        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+
+        let name = ISO8601DateFormatter.string(from: Date(), timeZone: .current, formatOptions: .withInternetDateTime)
+        let file = documents.appendingPathComponent(name, isDirectory: false).appendingPathExtension("caf")
+
+        return file
+    }
+
+    func startRecording() {
+        let recordingURL = createNewRecordingURL()
+        let format = AVAudioFormat(standardFormatWithSampleRate: 44_100, channels: 1)!
+
+        do {
+            audioRecorder = try AVAudioRecorder(url: recordingURL, format: format)
+        } catch {
+            NSLog("Error assigning contents of the recording url and format to the audio player: \(error)")
+        }
+
+        audioRecorder?.delegate = self
+        audioRecorder?.record()
+        self.recordingURL = recordingURL
+        updateViews()
+
+        startTimer()
+    }
+
+    func stopRecording() {
+        audioRecorder?.stop()
+        updateViews()
+        cancelTimer()
+    }
+
     // MARK: - IBActions
 
     @IBAction func updateCurrentTime(_ sender: Any) {
@@ -93,19 +157,36 @@ class RecordViewController: UIViewController {
     }
 
     @IBAction func toggleRecording(_ sender: Any) {
+        if isRecording {
+            stopRecording()
+        } else {
+            requestPermissionOrStartRecording()
+        }
     }
 
     @IBAction func saveButtonTapped(_ sender: Any) {
     }
+}
 
-    /*
-    // MARK: - Navigation
+extension RecordViewController: AVAudioRecorderDelegate {
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if flag,
+            let recordingURL = recordingURL {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: recordingURL)
+            } catch {
+                NSLog("Error assigning contents of the recording url to the audio player: \(error)")
+            }
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        updateViews()
     }
-    */
 
+    func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
+        if let error = error {
+            print("Audio Record Error: \(error)")
+        }
+
+        updateViews()
+    }
 }
