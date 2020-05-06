@@ -49,6 +49,7 @@ class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        try? prepareAudioSession()
     }
 
     // MARK: - View Related Methods
@@ -70,7 +71,7 @@ class RecordViewController: UIViewController {
         recordButton.isSelected = isRecording
     }
 
-    // MARK: Timer Methods
+    // MARK: - Timer Methods
 
     func startTimer() {
         timer?.invalidate()
@@ -148,12 +149,37 @@ class RecordViewController: UIViewController {
         cancelTimer()
     }
 
+    // MARK: - Playback Methods
+
+    func play() {
+        audioPlayer?.play()
+        startTimer()
+        updateViews()
+    }
+
+    func pause() {
+        audioPlayer?.pause()
+        cancelTimer()
+        updateViews()
+    }
+
+    func prepareAudioSession() throws {
+        let session = AVAudioSession.sharedInstance()
+        try session.setCategory(.playAndRecord, options: [.defaultToSpeaker])
+        try session.setActive(true, options: [])
+    }
+
     // MARK: - IBActions
 
     @IBAction func updateCurrentTime(_ sender: Any) {
     }
 
     @IBAction func togglePlayback(_ sender: Any) {
+        if isPlaying {
+            pause()
+        } else {
+            play()
+        }
     }
 
     @IBAction func toggleRecording(_ sender: Any) {
