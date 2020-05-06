@@ -23,6 +23,8 @@ class CameraViewController: UIViewController {
 
     private var player: AVPlayer!
 
+    var recordingController: RecordingController?
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -109,17 +111,14 @@ class CameraViewController: UIViewController {
         return fileURL
     }
 
-    private func playMovie(url: URL) {
-        player = AVPlayer(url: url)
-        let playerView = VideoPlayerView()
-        playerView.player = player
-        var topRect = view.bounds
-        topRect.size.height = topRect.size.height / 4
-        topRect.size.width = topRect.size.width / 4
-        topRect.origin.y = view.layoutMargins.top
-        playerView.frame = topRect
-        view.addSubview(playerView)
-        player.play()
+    private func saveMovie(url: URL) {
+//        player = AVPlayer(url: url)
+//        let playerView = VideoPlayerView()
+//        playerView.player = player
+
+        recordingController?.createRecording(url: url)
+
+//        player.play()
     }
 }
 
@@ -128,7 +127,7 @@ extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
         if let error = error {
             print("Error saving video: \(error)")
         } else {
-            playMovie(url: outputFileURL)
+            saveMovie(url: outputFileURL)
         }
 
         updateViews()
