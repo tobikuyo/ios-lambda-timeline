@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="JzH-IW-CBO">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="JzH-IW-CBO" customClass="RecordingTableViewCell" customModule="AudioComments" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JzH-IW-CBO" id="MmJ-di-RgN">
@@ -32,9 +32,15 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PtM-xc-r0r">
                                             <rect key="frame" x="20" y="43" width="15" height="22"/>
                                             <state key="normal" image="play.fill" catalog="system"/>
+                                            <connections>
+                                                <action selector="togglePlayback:" destination="JzH-IW-CBO" eventType="touchUpInside" id="S1F-yx-Lvl"/>
+                                            </connections>
                                         </button>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="tRL-38-N14">
                                             <rect key="frame" x="53" y="38" width="323" height="31"/>
+                                            <connections>
+                                                <action selector="updateCurrentTime:" destination="JzH-IW-CBO" eventType="valueChanged" id="EMU-wT-gNx"/>
+                                            </connections>
                                         </slider>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="231" translatesAutoresizingMaskIntoConstraints="NO" id="oPg-dD-8rA">
                                             <rect key="frame" x="57" y="73" width="314" height="18"/>
@@ -67,6 +73,13 @@
                                         <constraint firstItem="7T8-oN-WhX" firstAttribute="leading" secondItem="MmJ-di-RgN" secondAttribute="leadingMargin" constant="37" id="yum-QH-8si"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="durationSlider" destination="tRL-38-N14" id="QI3-aL-x5y"/>
+                                    <outlet property="playButton" destination="PtM-xc-r0r" id="hNB-LD-iyX"/>
+                                    <outlet property="recordingTitle" destination="7T8-oN-WhX" id="7DQ-ij-ily"/>
+                                    <outlet property="timeElapsedLabel" destination="kje-Wo-5dY" id="33s-0x-09T"/>
+                                    <outlet property="timeRemainingLabel" destination="8BW-0p-PGD" id="lFD-hB-1dG"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -75,7 +88,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recordings" id="DGB-c4-kDv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nsX-0V-2Xb"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nsX-0V-2Xb">
+                            <connections>
+                                <segue destination="B0x-LW-46t" kind="show" id="Lfr-F3-597"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oFH-qx-r6d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -98,11 +115,11 @@
             </objects>
             <point key="canvasLocation" x="-759" y="-222"/>
         </scene>
-        <!--View Controller-->
+        <!--Record View Controller-->
         <scene sceneID="ZEV-TX-dRv">
             <objects>
-                <viewController id="B0x-LW-46t" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8WY-Pg-sCD">
+                <viewController id="B0x-LW-46t" customClass="RecordViewController" customModule="AudioComments" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8WY-Pg-sCD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -121,6 +138,9 @@
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="N53-hb-75P">
                                         <rect key="frame" x="61" y="0.0" width="260" height="31"/>
+                                        <connections>
+                                            <action selector="updateCurrentTime:" destination="B0x-LW-46t" eventType="valueChanged" id="TY7-lU-819"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fn-r2-Hvc">
                                         <rect key="frame" x="327" y="0.0" width="55" height="30"/>
@@ -135,13 +155,13 @@
                                 <viewLayoutGuide key="safeArea" id="UTj-f6-kPq"/>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQU-kw-pfj">
-                                <rect key="frame" x="20" y="430" width="374" height="36"/>
+                                <rect key="frame" x="20" y="474" width="374" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="hjL-mU-K7x">
-                                <rect key="frame" x="20" y="624" width="374" height="86"/>
+                                <rect key="frame" x="20" y="668" width="374" height="86"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IkY-wr-SUR">
                                         <rect key="frame" x="0.0" y="0.0" width="173" height="86"/>
@@ -149,12 +169,18 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" image="play.fill" catalog="system"/>
                                         <state key="selected" image="pause.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="togglePlayback:" destination="B0x-LW-46t" eventType="touchUpInside" id="ydU-vt-oZO"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nN6-KL-nOl">
                                         <rect key="frame" x="201" y="0.0" width="173" height="86"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="mic.fill" catalog="system"/>
                                         <state key="selected" image="stop.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="toggleRecording:" destination="B0x-LW-46t" eventType="touchUpInside" id="OL1-p2-B6n"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -172,6 +198,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qAy-li-AYw"/>
                     </view>
+                    <navigationItem key="navigationItem" id="OIO-mq-yH0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="tDO-UI-FdR">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="B0x-LW-46t" id="KZU-ZV-INg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="playButton" destination="IkY-wr-SUR" id="86N-al-039"/>
+                        <outlet property="recordButton" destination="nN6-KL-nOl" id="0vw-lK-ih8"/>
+                        <outlet property="recordingLabel" destination="LQU-kw-pfj" id="oh1-8A-GGb"/>
+                        <outlet property="timeElapsedLabel" destination="aHR-rO-fru" id="8VZ-3I-MA3"/>
+                        <outlet property="timeRemainingLabel" destination="6Fn-r2-Hvc" id="yvs-t3-sbW"/>
+                        <outlet property="timeSlider" destination="N53-hb-75P" id="j03-74-DD7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Vr-qP-PFc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
