@@ -7,8 +7,8 @@
 //
 
 import Foundation
+import AVFoundation
 
 struct Recording {
-    var title: String
     var url: URL
 }
