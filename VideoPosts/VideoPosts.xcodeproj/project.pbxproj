@@ -18,6 +18,7 @@
 		2C7DD11B24636EA100E09D8B /* VideoPostsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7DD11A24636EA100E09D8B /* VideoPostsCollectionViewController.swift */; };
 		2C7DD11E24637BA800E09D8B /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7DD11D24637BA800E09D8B /* Recording.swift */; };
 		2C7DD12124637FD200E09D8B /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7DD12024637FD200E09D8B /* RecordingController.swift */; };
+		2C7DD1292463933B00E09D8B /* RecordingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7DD1282463933B00E09D8B /* RecordingCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		2C7DD11A24636EA100E09D8B /* VideoPostsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostsCollectionViewController.swift; sourceTree = "<group>"; };
 		2C7DD11D24637BA800E09D8B /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		2C7DD12024637FD200E09D8B /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
+		2C7DD1282463933B00E09D8B /* RecordingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				2C7DD10B2463675400E09D8B /* Application */,
 				2C7DD10C2463679A00E09D8B /* Storyboards */,
 				2C7DD11C24637A3700E09D8B /* Models */,
+				2C7DD1272463931A00E09D8B /* Views */,
 				2C7DD11F24637FB500E09D8B /* Model Controller */,
 				2C7DD11524636ADF00E09D8B /* View Controller */,
 				2C7DD1102463683A00E09D8B /* Helpers */,
@@ -136,6 +139,14 @@
 				2C7DD12024637FD200E09D8B /* RecordingController.swift */,
 			);
 			name = "Model Controller";
+			sourceTree = "<group>";
+		};
+		2C7DD1272463931A00E09D8B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2C7DD1282463933B00E09D8B /* RecordingCollectionViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C7DD1292463933B00E09D8B /* RecordingCollectionViewCell.swift in Sources */,
 				2C7D8C5E246364E9009F8656 /* AppDelegate.swift in Sources */,
 				2C7DD11724636B8B00E09D8B /* CameraViewController.swift in Sources */,
 				2C7DD11E24637BA800E09D8B /* Recording.swift in Sources */,

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AVFoundation
 
 struct Recording {
     var url: URL
