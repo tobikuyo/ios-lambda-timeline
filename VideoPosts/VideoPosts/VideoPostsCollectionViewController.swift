@@ -83,7 +83,7 @@ class VideoPostsCollectionViewController: UICollectionViewController {
             return UICollectionViewCell()
         }
 
-        let recording = recordingController.recordings[indexPath.row]
+        let recording = recordingController.recordings[indexPath.item]
         cell.recording = recording
 
         return cell

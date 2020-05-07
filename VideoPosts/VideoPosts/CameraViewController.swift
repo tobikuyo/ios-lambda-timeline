@@ -112,8 +112,10 @@ class CameraViewController: UIViewController {
     }
 
     private func saveMovie(url: URL) {
-        recordingController?.createRecording(url: url)
-        navigationController?.popToRootViewController(animated: true)
+        DispatchQueue.main.async {
+            self.recordingController?.createRecording(url: url)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
 

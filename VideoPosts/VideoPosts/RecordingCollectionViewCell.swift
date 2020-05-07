@@ -31,8 +31,8 @@ class RecordingCollectionViewCell: UICollectionViewCell {
 
     private func playMovie(url: URL) {
         player = AVPlayer(url: url)
-        let playerView = VideoPlayerView()
         playerView.player = player
+        playerView.backgroundColor = .systemOrange
         player.play()
     }
 }
