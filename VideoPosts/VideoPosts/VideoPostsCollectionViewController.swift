@@ -9,12 +9,16 @@
 import UIKit
 import AVFoundation
 
-private let reuseIdentifier = "Cell"
-
 class VideoPostsCollectionViewController: UICollectionViewController {
+
+    let recordingController = RecordingController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
     }
 
     // MARK: - IBActions
@@ -61,27 +65,27 @@ class VideoPostsCollectionViewController: UICollectionViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        if segue.identifier == "ShowCamera" {
+            if let cameraVC = segue.destination as? CameraViewController {
+                cameraVC.recordingController = recordingController
+            }
+        }
     }
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return recordingController.recordings.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordingCell", for: indexPath) as? RecordingCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+
+        let recording = recordingController.recordings[indexPath.row]
+        cell.recording = recording
+
         return cell
     }
 }
