@@ -112,13 +112,8 @@ class CameraViewController: UIViewController {
     }
 
     private func saveMovie(url: URL) {
-//        player = AVPlayer(url: url)
-//        let playerView = VideoPlayerView()
-//        playerView.player = player
-
         recordingController?.createRecording(url: url)
-
-//        player.play()
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
