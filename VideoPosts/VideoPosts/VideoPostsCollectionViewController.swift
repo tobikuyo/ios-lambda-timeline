@@ -70,6 +70,12 @@ class VideoPostsCollectionViewController: UICollectionViewController {
                 cameraVC.recordingController = recordingController
             }
         }
+
+        else if segue.identifier == "ShowMap" {
+            if let mapVC = segue.destination as? MapViewController {
+                mapVC.recordingController = recordingController
+            }
+        }
     }
 
     // MARK: UICollectionViewDataSource

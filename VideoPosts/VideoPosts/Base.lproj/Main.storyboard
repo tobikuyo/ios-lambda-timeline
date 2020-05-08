@@ -69,7 +69,7 @@
                     <navigationItem key="navigationItem" id="LFX-Eq-EXl">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="map" catalog="system" id="ASq-hi-H3q">
                             <connections>
-                                <segue destination="8PE-5M-tSa" kind="presentation" id="fin-ti-3EB"/>
+                                <segue destination="8PE-5M-tSa" kind="presentation" identifier="ShowMap" id="fin-ti-3EB"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="vNQ-ec-zcs">

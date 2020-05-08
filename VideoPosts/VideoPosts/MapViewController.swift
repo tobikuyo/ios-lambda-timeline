@@ -16,10 +16,19 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     var recordingController: RecordingController?
 
+    // MARK: View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureLocation()
+        mapView.delegate = self
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "RecordView")
 
+        guard let recordings = recordingController?.recordings else { return }
+        mapView.addAnnotations(recordings)
     }
+
+    // MARK: - Location Methods
 
     func configureLocation() {
         locationManager.delegate = self
@@ -45,5 +54,18 @@ extension MapViewController: CLLocationManagerDelegate {
         if status == .authorizedAlways || status == .authorizedWhenInUse {
             beginLocationUpdates(using: manager)
         }
+    }
+}
+
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "RecordView", for: annotation) as? MKMarkerAnnotationView else {
+            fatalError("Missing a registered view")
+        }
+
+        annotationView.annotation = annotation
+        annotationView.displayPriority = .required
+        annotationView.canShowCallout = true
+        return annotationView
     }
 }
