@@ -113,7 +113,7 @@ class CameraViewController: UIViewController {
 
     private func saveMovie(url: URL, with title: String) {
         DispatchQueue.main.async {
-            self.recordingController?.createRecording(url: url, title: title)
+            self.recordingController?.createRecording(url: url, recordingTitle: title)
         }
     }
 }

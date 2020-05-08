@@ -12,8 +12,8 @@ class RecordingController {
 
     var recordings: [Recording] = []
 
-    func createRecording(url: URL, title: String) {
-        let recording = Recording(url: url, title: title)
+    func createRecording(url: URL, recordingTitle: String) {
+        let recording = Recording(url: url, recordingTitle: recordingTitle)
         recordings.append(recording)
     }
 }
