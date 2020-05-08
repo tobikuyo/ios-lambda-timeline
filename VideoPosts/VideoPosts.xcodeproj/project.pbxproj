@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2A1B592464F13100BD320D /* Recording+MKAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A1B582464F13100BD320D /* Recording+MKAnnotation.swift */; };
 		2C7D8C5E246364E9009F8656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D8C5D246364E9009F8656 /* AppDelegate.swift */; };
 		2C7D8C60246364E9009F8656 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D8C5F246364E9009F8656 /* SceneDelegate.swift */; };
 		2C7D8C65246364E9009F8656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7D8C63246364E9009F8656 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C2A1B582464F13100BD320D /* Recording+MKAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+MKAnnotation.swift"; sourceTree = "<group>"; };
 		2C7D8C5A246364E9009F8656 /* VideoPosts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPosts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7D8C5D246364E9009F8656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C7D8C5F246364E9009F8656 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				2C7DD11D24637BA800E09D8B /* Recording.swift */,
+				2C2A1B582464F13100BD320D /* Recording+MKAnnotation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C7DD1292463933B00E09D8B /* RecordingCollectionViewCell.swift in Sources */,
+				2C2A1B592464F13100BD320D /* Recording+MKAnnotation.swift in Sources */,
 				2C7D8C5E246364E9009F8656 /* AppDelegate.swift in Sources */,
 				2C7DD11724636B8B00E09D8B /* CameraViewController.swift in Sources */,
 				2CED75322464DC0E00DD3544 /* MapViewController.swift in Sources */,

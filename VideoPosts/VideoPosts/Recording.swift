@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct Recording {
+class Recording: NSObject {
     var url: URL
-    var title: String
+    var recordingTitle: String
+
+    init(url: URL, recordingTitle: String) {
+        self.url = url
+        self.recordingTitle = recordingTitle
+    }
 }
