@@ -111,10 +111,9 @@ class CameraViewController: UIViewController {
         return fileURL
     }
 
-    private func saveMovie(url: URL) {
+    private func saveMovie(url: URL, with title: String) {
         DispatchQueue.main.async {
-            self.recordingController?.createRecording(url: url)
-            self.dismiss(animated: true, completion: nil)
+            self.recordingController?.createRecording(url: url, title: title)
         }
     }
 }
@@ -124,7 +123,28 @@ extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
         if let error = error {
             print("Error saving video: \(error)")
         } else {
-            saveMovie(url: outputFileURL)
+            var title = ""
+            let alert = UIAlertController(title: "Give this recording a title",
+                                          message: nil,
+                                          preferredStyle: .alert)
+
+            alert.addTextField(configurationHandler: nil)
+
+            let submit = UIAlertAction(title: "Submit", style: .default) { _ in
+                if let response = alert.textFields?.first?.text, !response.isEmpty {
+                    title = response
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+            alert.addAction(submit)
+            alert.addAction(cancel)
+
+            self.present(alert, animated: true) {
+                self.saveMovie(url: outputFileURL, with: title)
+            }
         }
 
         updateViews()

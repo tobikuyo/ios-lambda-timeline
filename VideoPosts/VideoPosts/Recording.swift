@@ -10,4 +10,5 @@ import Foundation
 
 struct Recording {
     var url: URL
+    var title: String
 }
